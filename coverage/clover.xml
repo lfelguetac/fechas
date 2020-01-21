@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1579636875130" clover="3.2.0">
-  <project timestamp="1579636875130" name="All files">
-    <metrics statements="309" coveredstatements="309" conditionals="212" coveredconditionals="212" methods="17" coveredmethods="17" elements="538" coveredelements="538" complexity="0" loc="309" ncloc="309" packages="2" files="15" classes="15"/>
+<coverage generated="1579638658253" clover="3.2.0">
+  <project timestamp="1579638658253" name="All files">
+    <metrics statements="305" coveredstatements="305" conditionals="208" coveredconditionals="208" methods="17" coveredmethods="17" elements="530" coveredelements="530" complexity="0" loc="305" ncloc="305" packages="2" files="15" classes="15"/>
     <package name="src">
       <metrics statements="40" coveredstatements="40" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-      <file name="constants.ts" path="C:\DEVELOP\api\libtfs\src\constants.ts">
+      <file name="constants.ts" path="C:\DEVELOP\api\tfslib\src\constants.ts">
         <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="cond" truecount="2" falsecount="0"/>
         <line num="6" count="1" type="stmt"/>
@@ -21,7 +21,7 @@
         <line num="55" count="1" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
       </file>
-      <file name="index.ts" path="C:\DEVELOP\api\libtfs\src\index.ts">
+      <file name="index.ts" path="C:\DEVELOP\api\tfslib\src\index.ts">
         <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -52,13 +52,13 @@
       </file>
     </package>
     <package name="src.core">
-      <metrics statements="269" coveredstatements="269" conditionals="210" coveredconditionals="210" methods="16" coveredmethods="16"/>
-      <file name="bisiesto.ts" path="C:\DEVELOP\api\libtfs\src\core\bisiesto.ts">
+      <metrics statements="265" coveredstatements="265" conditionals="206" coveredconditionals="206" methods="16" coveredmethods="16"/>
+      <file name="bisiesto.ts" path="C:\DEVELOP\api\tfslib\src\core\bisiesto.ts">
         <metrics statements="2" coveredstatements="2" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="234" type="cond" truecount="5" falsecount="0"/>
       </file>
-      <file name="diahabil.ts" path="C:\DEVELOP\api\libtfs\src\core\diahabil.ts">
+      <file name="diahabil.ts" path="C:\DEVELOP\api\tfslib\src\core\diahabil.ts">
         <metrics statements="20" coveredstatements="20" conditionals="15" coveredconditionals="15" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -81,7 +81,7 @@
         <line num="34" count="2" type="stmt"/>
         <line num="38" count="70" type="stmt"/>
       </file>
-      <file name="diahabilsiguiente.ts" path="C:\DEVELOP\api\libtfs\src\core\diahabilsiguiente.ts">
+      <file name="diahabilsiguiente.ts" path="C:\DEVELOP\api\tfslib\src\core\diahabilsiguiente.ts">
         <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -101,34 +101,32 @@
         <line num="25" count="19" type="stmt"/>
         <line num="28" count="10" type="stmt"/>
       </file>
-      <file name="disgregarfecha.ts" path="C:\DEVELOP\api\libtfs\src\core\disgregarfecha.ts">
-        <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
+      <file name="disgregarfecha.ts" path="C:\DEVELOP\api\tfslib\src\core\disgregarfecha.ts">
+        <metrics statements="22" coveredstatements="22" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="12" count="697" type="stmt"/>
-        <line num="14" count="697" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="20" count="697" type="stmt"/>
-        <line num="24" count="292" type="stmt"/>
-        <line num="25" count="292" type="stmt"/>
-        <line num="28" count="71" type="stmt"/>
-        <line num="29" count="71" type="stmt"/>
-        <line num="32" count="45" type="stmt"/>
-        <line num="33" count="45" type="stmt"/>
-        <line num="34" count="45" type="stmt"/>
-        <line num="35" count="45" type="stmt"/>
-        <line num="38" count="55" type="stmt"/>
-        <line num="39" count="55" type="stmt"/>
-        <line num="40" count="55" type="stmt"/>
-        <line num="42" count="55" type="stmt"/>
-        <line num="45" count="234" type="stmt"/>
-        <line num="46" count="234" type="stmt"/>
-        <line num="47" count="234" type="stmt"/>
-        <line num="48" count="234" type="stmt"/>
-        <line num="51" count="697" type="stmt"/>
+        <line num="15" count="697" type="stmt"/>
+        <line num="19" count="292" type="stmt"/>
+        <line num="20" count="292" type="stmt"/>
+        <line num="23" count="71" type="stmt"/>
+        <line num="24" count="71" type="stmt"/>
+        <line num="27" count="45" type="stmt"/>
+        <line num="28" count="45" type="stmt"/>
+        <line num="29" count="45" type="stmt"/>
+        <line num="30" count="45" type="stmt"/>
+        <line num="33" count="55" type="stmt"/>
+        <line num="34" count="55" type="stmt"/>
+        <line num="35" count="55" type="stmt"/>
+        <line num="37" count="55" type="stmt"/>
+        <line num="40" count="234" type="stmt"/>
+        <line num="41" count="234" type="stmt"/>
+        <line num="42" count="234" type="stmt"/>
+        <line num="43" count="234" type="stmt"/>
+        <line num="46" count="697" type="stmt"/>
       </file>
-      <file name="formatearfecha.ts" path="C:\DEVELOP\api\libtfs\src\core\formatearfecha.ts">
+      <file name="formatearfecha.ts" path="C:\DEVELOP\api\tfslib\src\core\formatearfecha.ts">
         <metrics statements="52" coveredstatements="52" conditionals="47" coveredconditionals="47" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -183,7 +181,7 @@
         <line num="87" count="1" type="stmt"/>
         <line num="89" count="1" type="stmt"/>
       </file>
-      <file name="getformatofecha.ts" path="C:\DEVELOP\api\libtfs\src\core\getformatofecha.ts">
+      <file name="getformatofecha.ts" path="C:\DEVELOP\api\tfslib\src\core\getformatofecha.ts">
         <metrics statements="20" coveredstatements="20" conditionals="52" coveredconditionals="52" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -206,12 +204,12 @@
         <line num="36" count="129" type="stmt"/>
         <line num="39" count="42" type="stmt"/>
       </file>
-      <file name="numeros.ts" path="C:\DEVELOP\api\libtfs\src\core\numeros.ts">
+      <file name="numeros.ts" path="C:\DEVELOP\api\tfslib\src\core\numeros.ts">
         <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="3839" type="cond" truecount="2" falsecount="0"/>
       </file>
-      <file name="proximafecha.ts" path="C:\DEVELOP\api\libtfs\src\core\proximafecha.ts">
+      <file name="proximafecha.ts" path="C:\DEVELOP\api\tfslib\src\core\proximafecha.ts">
         <metrics statements="19" coveredstatements="19" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -233,7 +231,7 @@
         <line num="34" count="8" type="stmt"/>
         <line num="36" count="11" type="stmt"/>
       </file>
-      <file name="proximafechahabil.ts" path="C:\DEVELOP\api\libtfs\src\core\proximafechahabil.ts">
+      <file name="proximafechahabil.ts" path="C:\DEVELOP\api\tfslib\src\core\proximafechahabil.ts">
         <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -252,7 +250,7 @@
         <line num="25" count="14" type="stmt"/>
         <line num="27" count="29" type="stmt"/>
       </file>
-      <file name="restarfechas.ts" path="C:\DEVELOP\api\libtfs\src\core\restarfechas.ts">
+      <file name="restarfechas.ts" path="C:\DEVELOP\api\tfslib\src\core\restarfechas.ts">
         <metrics statements="20" coveredstatements="20" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -271,11 +269,11 @@
         <line num="29" count="10" type="cond" truecount="2" falsecount="0"/>
         <line num="30" count="7" type="stmt"/>
         <line num="31" count="7" type="stmt"/>
+        <line num="34" count="10" type="stmt"/>
         <line num="36" count="10" type="stmt"/>
-        <line num="39" count="10" type="stmt"/>
-        <line num="41" count="10" type="stmt"/>
+        <line num="38" count="10" type="stmt"/>
       </file>
-      <file name="sumarmeses.ts" path="C:\DEVELOP\api\libtfs\src\core\sumarmeses.ts">
+      <file name="sumarmeses.ts" path="C:\DEVELOP\api\tfslib\src\core\sumarmeses.ts">
         <metrics statements="19" coveredstatements="19" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -297,7 +295,7 @@
         <line num="34" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
       </file>
-      <file name="ultimodiames.ts" path="C:\DEVELOP\api\libtfs\src\core\ultimodiames.ts">
+      <file name="ultimodiames.ts" path="C:\DEVELOP\api\tfslib\src\core\ultimodiames.ts">
         <metrics statements="30" coveredstatements="30" conditionals="13" coveredconditionals="13" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -330,8 +328,8 @@
         <line num="55" count="3" type="stmt"/>
         <line num="59" count="30" type="stmt"/>
       </file>
-      <file name="validarfecha.ts" path="C:\DEVELOP\api\libtfs\src\core\validarfecha.ts">
-        <metrics statements="28" coveredstatements="28" conditionals="37" coveredconditionals="37" methods="2" coveredmethods="2"/>
+      <file name="validarfecha.ts" path="C:\DEVELOP\api\tfslib\src\core\validarfecha.ts">
+        <metrics statements="26" coveredstatements="26" conditionals="35" coveredconditionals="35" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -343,23 +341,21 @@
         <line num="19" count="311" type="stmt"/>
         <line num="20" count="311" type="cond" truecount="2" falsecount="0"/>
         <line num="22" count="301" type="stmt"/>
-        <line num="24" count="301" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="301" type="cond" truecount="4" falsecount="0"/>
         <line num="25" count="2" type="stmt"/>
-        <line num="29" count="301" type="cond" truecount="4" falsecount="0"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="33" count="301" type="cond" truecount="4" falsecount="0"/>
-        <line num="34" count="10" type="stmt"/>
-        <line num="37" count="301" type="cond" truecount="4" falsecount="0"/>
-        <line num="38" count="7" type="stmt"/>
-        <line num="41" count="301" type="cond" truecount="2" falsecount="0"/>
-        <line num="42" count="58" type="cond" truecount="4" falsecount="0"/>
-        <line num="43" count="58" type="cond" truecount="4" falsecount="0"/>
-        <line num="46" count="301" type="cond" truecount="4" falsecount="0"/>
-        <line num="47" count="7" type="stmt"/>
-        <line num="50" count="301" type="stmt"/>
-        <line num="51" count="3612" type="cond" truecount="5" falsecount="0"/>
-        <line num="52" count="12" type="stmt"/>
-        <line num="56" count="301" type="stmt"/>
+        <line num="28" count="301" type="cond" truecount="4" falsecount="0"/>
+        <line num="29" count="10" type="stmt"/>
+        <line num="32" count="301" type="cond" truecount="4" falsecount="0"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="36" count="301" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="58" type="cond" truecount="4" falsecount="0"/>
+        <line num="38" count="58" type="cond" truecount="4" falsecount="0"/>
+        <line num="41" count="301" type="cond" truecount="4" falsecount="0"/>
+        <line num="42" count="7" type="stmt"/>
+        <line num="45" count="301" type="stmt"/>
+        <line num="46" count="3612" type="cond" truecount="5" falsecount="0"/>
+        <line num="47" count="12" type="stmt"/>
+        <line num="51" count="301" type="stmt"/>
       </file>
     </package>
   </project>
