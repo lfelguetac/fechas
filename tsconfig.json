@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2016",
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "outDir": "dist/",
+      "rootDir": "./",
+      
+      // typeorm typegraphql
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      //typegraphql
+      "lib": ["es2016", "esnext.asynciterable"],
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true
+
+    },
+    "include": [
+        "**/*"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+}

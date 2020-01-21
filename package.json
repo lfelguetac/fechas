@@ -1,0 +1,33 @@
+{
+  "name": "tfslib",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "publish": "",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://200.0.0.41:3001/trebol/tfs-migracion/ms-tfslib"
+  },
+  "keywords": [
+    "libreria",
+    "creditos",
+    "fechas"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@types/node": "^13.1.7",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.22",
+    "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0"
+  }
+}
