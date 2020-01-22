@@ -1,37 +1,20 @@
 export enum CodigoFormatoFecha {
 
-    /**
-     * ddmmyyyy 
-    */
+    /** ddmmyyyy */
     FMT_PLANO = 'PLANO', 
-    
-    /**
-     * yyyymmdd
-     */
+    /** yyyymmdd */
     FMT_INVERSOPLANO = 'INVERSOPLANO', 
-
-    /**
-     * yyyy/mm/dd
-     */
+    /** yyyy/mm/dd */
     FMT_INVERSO = 'INVERSO',
-
-    /**
-     * dd/mm/yyyy
-     */
+    /** dd/mm/yyyy */
     FMT_ESPANOL = 'ESPANOL',
-
-    /**
-     * dd-mm-yyyy
-     */
+    /** dd-mm-yyyy */
     FMT_ITALIANO = 'ITALIANO',
-
-    /**
-     * Se emplea para saber si fecha tiene algunos de los formatos validos
-    */
+    /** ...para saber si fecha tiene algunos de los formatos validos */
     FTM_CORRECTO = 'CORRECTO',
 
     /* Errores en el formato de la fecha  */
-    ERR_FECHA_INVALIDA = 'ERRORFORMATO',  /*Cuando no se puede determinar si error de fmto es de año, mes o dia*/
+    ERR_FECHA_INVALIDA = 'ERRORFORMATO',  /*Cuando no se puede determinar el tipo de error en fecha*/
     ERR_ANIO_INVALIDO = 'ANOINVALIDO',
     ERR_MES_INVALIDO = 'MESINVALIDO',
     ERR_DIA_INVALIDO = 'DIAINVALIDO'

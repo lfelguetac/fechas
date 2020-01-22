@@ -284,6 +284,14 @@ describe('valida que fechas sean correctas', () => {
         expect(validarFecha('15/120/2018')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
     });
 
+    it('valida que el mes ingresado sea el correcto: ni < 1 ni > 12', () => {
+        expect(validarFecha('15/120/2018')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+
+        console.log(getFormatoFecha('15/120/2018'));
+        
+
+    });
+
     it('valida que el dia ingresado sea el correcto: ni < 1 ni > 31', () => {
         expect(validarFecha('-2/12/2018')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
         expect(validarFecha('152/02/2018')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);

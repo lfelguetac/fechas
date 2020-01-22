@@ -1,0 +1,11 @@
+/mode_modules
+/src
+/test
+index.ts
+.gitignore
+jest.config.js
+package.lock.json
+package.json
+README.md
+snapshot.jest.png
+tsconfig.json

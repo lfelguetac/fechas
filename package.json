@@ -1,16 +1,20 @@
 {
-  "name": "tfslib",
-  "version": "0.1.0",
+  "name": "@trebol/lib-fechas",
+  "version": "0.1.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest --coverage",
-    "publish": "",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublicar": "npm run build",
+    "publicar": "npm publish"
+  },
+  "publishConfig": {
+    "registry": "http://stelios.trebolit.local/nexus/repository/npm-hosted/"
   },
   "repository": {
     "type": "git",
-    "url": "http://200.0.0.41:3001/trebol/tfs-migracion/ms-tfslib"
+    "url": "http://200.0.0.41:3001/trebol/tfs-migracion/tfs-lib"
   },
   "keywords": [
     "libreria",

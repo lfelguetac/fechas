@@ -12,10 +12,10 @@ export function validarFecha (fecha: string): CodigoFormatoFecha {
 
     let codigoFormatoFecha: CodigoFormatoFecha = CodigoFormatoFecha.FTM_CORRECTO;
 
-    if (fecha.length > 10) { 
-        return CodigoFormatoFecha.ERR_FECHA_INVALIDA;
-    }
-
+    // if (fecha.length > 10) { 
+    //     return CodigoFormatoFecha.ERR_FECHA_INVALIDA;
+    // }
+    
     const formato: CodigoFormatoFecha = getFormatoFecha(fecha);
     if (formato === CodigoFormatoFecha.ERR_FECHA_INVALIDA) { return CodigoFormatoFecha.ERR_FECHA_INVALIDA };
 

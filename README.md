@@ -6,5 +6,5 @@ Resumen informe de test unitarios:
 
 Para instalar:
 ```sh
-npm i tfslib
+npm i @trebol/lib-fechas
 ```
