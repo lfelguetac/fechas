@@ -1,8 +1,9 @@
 {
-  "name": "@trebol/lib-fechas",
-  "version": "0.1.1",
+  "name": "fechas",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --coverage",
     "build": "tsc",
@@ -10,15 +11,17 @@
     "publicar": "npm publish"
   },
   "publishConfig": {
-    "registry": "http://stelios.trebolit.local/nexus/repository/npm-hosted/"
+    "registry": "https://github.com/PQMISSCMP/fechas"
   },
   "repository": {
     "type": "git",
-    "url": "http://200.0.0.41:3001/trebol/tfs-migracion/tfs-lib"
+    "url": "https://github.com/PQMISSCMP/fechas"
+  },
+  "bugs": {
+    "url": "https://github.com/PQMISSCMP/fechas/issues"
   },
   "keywords": [
     "libreria",
-    "creditos",
     "fechas"
   ],
   "author": "",
@@ -26,7 +29,6 @@
   "dependencies": {
     "@types/node": "^13.1.7",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.22",
     "typescript": "^3.7.4"
   },
   "devDependencies": {

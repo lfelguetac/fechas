@@ -1,10 +1,10 @@
-### Libreria tfslib para migración de créditos
+### Libreria de fechas. Sientase en la libertad de usarlo y contribuir a mejorarla.
 
 Resumen informe de test unitarios:
 
-![Git Logo](snapshot.jest.png?raw=true "Git Logo")
+![informe](snapshot.jest.png?raw=true "")
 
 Para instalar:
 ```sh
-npm i @trebol/lib-fechas
+npm i fechas
 ```
