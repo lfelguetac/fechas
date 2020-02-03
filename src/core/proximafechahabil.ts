@@ -1,30 +1,36 @@
-import { CodigoFormatoFecha } from "../constants";
+import { CodigoFormatoFecha, FormatoFeriados, ErroresComunes } from "../constants";
 import { validarFecha } from "./validarfecha";
 import { addDias } from "./proximafecha";
 import { isHabil } from "./diahabil";
 
 /**
- * 
  * @param fecha 
  * @param cantidadDiazHabiles 
- * Obtiene una nueva fecha habil al sumar o restar días habiles (considera fines de semana y festivos )
+ * @param listaFeriados
+ * Obtiene una nueva fecha hábil, dados una fecha válida y un listado de feriados, al sumar o restar días hábiles.
  */
-export function addDiasHabiles ( fecha: string, cantidadDiazHabiles: number ): string | CodigoFormatoFecha { 
+export function addDiasHabiles( fecha: string, cantidadDiazHabiles: number, listaFeriados: FormatoFeriados[] ): string { 
+    try {
 
-    if (validarFecha(fecha) !== CodigoFormatoFecha.FTM_CORRECTO) { return CodigoFormatoFecha.ERR_FECHA_INVALIDA }
-
-    let habil:boolean = false;
-    let sgteDia: number = 1;
-    let match: number = 0;
-    while(!habil){
-        let siguienteFecha = addDias(fecha, sgteDia);
-        if (isHabil(siguienteFecha)){
-            match += 1;
+        validarFecha(fecha);
+        
+        let siguienteFecha: string = '';
+        let habil:boolean = false;
+        let sgteDia: number = 1;
+        let match: number = 0;
+        while(!habil){
+            siguienteFecha = addDias(fecha, sgteDia);
+            if (isHabil(siguienteFecha, listaFeriados)){
+                match += 1;
+            }
+            if (cantidadDiazHabiles === match){ 
+                habil = true; 
+            }
+            sgteDia += 1;
         }
-        if (cantidadDiazHabiles === match){
-            return siguienteFecha;
-        }
-        sgteDia += 1;
+        return siguienteFecha;
+    } catch (error) {
+        throw (error)
     }
 
 }

@@ -172,32 +172,32 @@ describe('valida que fechas sean habiles', () => {
     it('valida consistencia de fecha', () => {
         // expect(isHabil('29-02-2021')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
         // expect(isHabil('29/02/2021')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(src_1.isHabil('18.01.2020')).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(src_1.isHabil('13-01/2020')).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(src_1.isHabil('31/04/2021')).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(src_1.isHabil('20200431')).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(src_1.isHabil('2020/04/31')).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(src_1.isHabil('2021/02/29')).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(src_1.isHabil('2020/02/29')).toBe(false);
+        expect(src_1.isHabil('18.01.2020', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(src_1.isHabil('13-01/2020', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(src_1.isHabil('31/04/2021', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(src_1.isHabil('20200431', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(src_1.isHabil('2020/04/31', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(src_1.isHabil('2021/02/29', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(src_1.isHabil('2020/02/29', constants_1.feriados)).toBe(false);
     });
     it('valida el dato correcto cuando es fin de semana o no lo sea', () => {
-        expect(src_1.isHabil('18/01/2020')).toBe(false);
-        expect(src_1.isHabil('13/01/2020')).toBe(true);
+        expect(src_1.isHabil('18/01/2020', constants_1.feriados)).toBe(false);
+        expect(src_1.isHabil('13/01/2020', constants_1.feriados)).toBe(true);
     });
     it('valida dia festivo', () => {
-        expect(src_1.isHabil('01/01/2020')).toBe(false);
+        expect(src_1.isHabil('01/01/2020', constants_1.feriados)).toBe(false);
     });
     it('valida que 15/01/2020 sea festivo', () => {
-        expect(src_1.isHabil('15/01/2020')).toBe(false);
+        expect(src_1.isHabil('15/01/2020', constants_1.feriados)).toBe(false);
     });
     it('valida que 29/02/2020 sea no-habil', () => {
-        expect(src_1.isHabil('29/02/2020')).toBe(false);
+        expect(src_1.isHabil('29/02/2020', constants_1.feriados)).toBe(false);
     });
 });
 describe('valida feriados variables', () => {
     it('valida feriado semana santa 2020', () => {
-        expect(src_1.isHabil('10/04/2020')).toBe(false);
-        expect(src_1.isHabil('11/04/2020')).toBe(false);
+        expect(src_1.isHabil('10/04/2020', constants_1.feriados)).toBe(false);
+        expect(src_1.isHabil('11/04/2020', constants_1.feriados)).toBe(false);
     });
 });
 describe('valida que fechas sean correctas', () => {
@@ -226,7 +226,7 @@ describe('valida que fechas sean correctas', () => {
         expect(src_1.validarFecha('29/02/2015')).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
     });
     it('valida año bisiesto formato italiano', () => {
-        expect(src_1.isHabil('29-02-2021')).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(src_1.isHabil('29-02-2021', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_DIA_INVALIDO);
     });
     it('valida fecha 28/02/2015 sea correcto', () => {
         expect(src_1.validarFecha('28/02/2015')).toBe(constants_1.CodigoFormatoFecha.FTM_CORRECTO);
@@ -472,67 +472,67 @@ describe('preba obtener la Proxima Fecha', () => {
 });
 describe('addDiasHabiles', () => {
     it('fechas no validas', () => {
-        expect(src_1.addDiasHabiles('213/01/2020', 1)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(src_1.addDiasHabiles('21.01.2020', 1)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(src_1.addDiasHabiles('21/01-2020', 1)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(src_1.addDiasHabiles('213/01/2020', 1, constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(src_1.addDiasHabiles('21.01.2020', 1, constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(src_1.addDiasHabiles('21/01-2020', 1, constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
     });
     it('prueba siguiente dia habil', () => {
-        expect(src_1.addDiasHabiles('21/01/2020', 1)).toBe('22/01/2020');
+        expect(src_1.addDiasHabiles('21/01/2020', 1, constants_1.feriados)).toBe('22/01/2020');
     });
     it('prueba siguiente dia habil: caso de borde 1', () => {
-        expect(src_1.addDiasHabiles('24/01/2020', 1)).toBe('27/01/2020');
+        expect(src_1.addDiasHabiles('24/01/2020', 1, constants_1.feriados)).toBe('27/01/2020');
     });
     it('prueba siguiente dia habil: caso de borde 2', () => {
-        expect(src_1.addDiasHabiles('17/09/2020', 2)).toBe('22/09/2020');
+        expect(src_1.addDiasHabiles('17/09/2020', 2, constants_1.feriados)).toBe('22/09/2020');
     });
     it('prueba siguiente dia habil: caso de borde 3', () => {
-        expect(src_1.addDiasHabiles('15/09/2020', 3)).toBe('21/09/2020');
+        expect(src_1.addDiasHabiles('15/09/2020', 3, constants_1.feriados)).toBe('21/09/2020');
     });
     it('prueba siguiente dia habil: caso de borde 4', () => {
-        expect(src_1.addDiasHabiles('22/01/2020', 2)).toBe('24/01/2020');
+        expect(src_1.addDiasHabiles('22/01/2020', 2, constants_1.feriados)).toBe('24/01/2020');
     });
     it('prueba siguiente dia habil: caso de borde 4', () => {
-        expect(src_1.addDiasHabiles('22/01/2020', 2)).toBe('24/01/2020');
+        expect(src_1.addDiasHabiles('22/01/2020', 2, constants_1.feriados)).toBe('24/01/2020');
     });
     it('prueba siguiente dia habil: caso de borde 1, distintos formatos', () => {
-        expect(src_1.addDiasHabiles('24-01-2020', 1)).toBe('27-01-2020');
-        expect(src_1.addDiasHabiles('24012020', 1)).toBe('27012020');
-        expect(src_1.addDiasHabiles('20200124', 1)).toBe('20200127');
-        expect(src_1.addDiasHabiles('2020/01/24', 1)).toBe('2020/01/27');
+        expect(src_1.addDiasHabiles('24-01-2020', 1, constants_1.feriados)).toBe('27-01-2020');
+        expect(src_1.addDiasHabiles('24012020', 1, constants_1.feriados)).toBe('27012020');
+        expect(src_1.addDiasHabiles('20200124', 1, constants_1.feriados)).toBe('20200127');
+        expect(src_1.addDiasHabiles('2020/01/24', 1, constants_1.feriados)).toBe('2020/01/27');
     });
     it('prueba siguiente dia habil: caso de borde 5', () => {
-        expect(src_1.addDiasHabiles('15/09/2020', 2)).toBe('17/09/2020');
+        expect(src_1.addDiasHabiles('15/09/2020', 2, constants_1.feriados)).toBe('17/09/2020');
     });
     it('prueba siguiente dia habil: caso de borde 6', () => {
-        expect(src_1.addDiasHabiles('20/05/2020', 1)).toBe('22/05/2020');
+        expect(src_1.addDiasHabiles('20/05/2020', 1, constants_1.feriados)).toBe('22/05/2020');
     });
     it('prueba siguiente dia habil: caso de borde 7', () => {
-        expect(src_1.addDiasHabiles('27/02/2020', 2)).toBe('02/03/2020');
+        expect(src_1.addDiasHabiles('27/02/2020', 2, constants_1.feriados)).toBe('02/03/2020');
     });
     it('prueba siguiente dia habil: caso de borde 8', () => {
-        expect(src_1.addDiasHabiles('27/02/2025', 2)).toBe('03/03/2025');
+        expect(src_1.addDiasHabiles('27/02/2025', 2, constants_1.feriados)).toBe('03/03/2025');
     });
 });
 describe('getDiaHabilSiguiente', () => {
     it('valida fecha', () => {
-        expect(src_1.getDiaHabilSiguiente('21-01/2020')).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(src_1.getDiaHabilSiguiente('21.01.2020')).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(src_1.getDiaHabilSiguiente('21-01/2020', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(src_1.getDiaHabilSiguiente('21.01.2020', constants_1.feriados)).toBe(constants_1.CodigoFormatoFecha.ERR_FECHA_INVALIDA);
     });
     it('camino feliz', () => {
-        expect(src_1.getDiaHabilSiguiente('21/01/2020')).toBe('22/01/2020');
+        expect(src_1.getDiaHabilSiguiente('21/01/2020', constants_1.feriados)).toBe('22/01/2020');
     });
     it('feriados', () => {
-        expect(src_1.getDiaHabilSiguiente('17/09/2020')).toBe('21/09/2020');
-        expect(src_1.getDiaHabilSiguiente('17-09-2020')).toBe('21-09-2020');
-        expect(src_1.getDiaHabilSiguiente('2020/09/17')).toBe('2020/09/21');
+        expect(src_1.getDiaHabilSiguiente('17/09/2020', constants_1.feriados)).toBe('21/09/2020');
+        expect(src_1.getDiaHabilSiguiente('17-09-2020', constants_1.feriados)).toBe('21-09-2020');
+        expect(src_1.getDiaHabilSiguiente('2020/09/17', constants_1.feriados)).toBe('2020/09/21');
     });
     it('bisiestos', () => {
-        expect(src_1.getDiaHabilSiguiente('28/02/2012')).toBe('29/02/2012');
-        expect(src_1.getDiaHabilSiguiente('28-02-2012')).toBe('29-02-2012');
-        expect(src_1.getDiaHabilSiguiente('28022012')).toBe('29022012');
-        expect(src_1.getDiaHabilSiguiente('2012/02/28')).toBe('2012/02/29');
-        expect(src_1.getDiaHabilSiguiente('20120228')).toBe('20120229');
-        expect(src_1.getDiaHabilSiguiente('28/02/2011')).toBe('01/03/2011');
+        expect(src_1.getDiaHabilSiguiente('28/02/2012', constants_1.feriados)).toBe('29/02/2012');
+        expect(src_1.getDiaHabilSiguiente('28-02-2012', constants_1.feriados)).toBe('29-02-2012');
+        expect(src_1.getDiaHabilSiguiente('28022012', constants_1.feriados)).toBe('29022012');
+        expect(src_1.getDiaHabilSiguiente('2012/02/28', constants_1.feriados)).toBe('2012/02/29');
+        expect(src_1.getDiaHabilSiguiente('20120228', constants_1.feriados)).toBe('20120229');
+        expect(src_1.getDiaHabilSiguiente('28/02/2011', constants_1.feriados)).toBe('01/03/2011');
     });
 });
 //# sourceMappingURL=libtfs.test.js.map

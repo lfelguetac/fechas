@@ -16,10 +16,13 @@ export declare enum CodigoFormatoFecha {
     ERR_MES_INVALIDO = "MESINVALIDO",
     ERR_DIA_INVALIDO = "DIAINVALIDO"
 }
-export declare const feriadosFijos: {
+export interface OptionFeriados {
     dia: string;
     mes: string;
-}[];
+    anio?: string;
+}
+export declare const feriados: OptionFeriados[];
+export declare const feriadosFijos: OptionFeriados[];
 export declare const feriadosVariables: {
     dia: string;
     mes: string;

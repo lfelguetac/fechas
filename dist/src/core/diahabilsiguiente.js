@@ -9,7 +9,7 @@ const diahabil_1 = require("./diahabil");
  * @param fecha
  * Obtiene el próximo dia hábil de una fecha dada
  */
-function getDiaHabilSiguiente(fecha) {
+function getDiaHabilSiguiente(fecha, feriados) {
     const codigoFormato = validarfecha_1.validarFecha(fecha);
     if (codigoFormato !== constants_1.CodigoFormatoFecha.FTM_CORRECTO) {
         return codigoFormato;
@@ -19,7 +19,7 @@ function getDiaHabilSiguiente(fecha) {
     let sgteDia = 1;
     while (!habil) {
         let siguienteFecha = proximafecha_1.addDias(fecha, sgteDia);
-        if (diahabil_1.isHabil(siguienteFecha)) {
+        if (diahabil_1.isHabil(siguienteFecha, feriados)) {
             diaHabilSiguiente = siguienteFecha;
             habil = true;
         }

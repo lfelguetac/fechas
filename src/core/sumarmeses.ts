@@ -8,32 +8,36 @@ import { disgregarFecha } from "./disgregarfecha";
  * 
  * @param fecha 
  * @param nMeses
- * Adiciona N cantidad de meses a una determinada fecha sin importar el formato que esta tenga. Devolviendo la fecha en algunos de los formatos validos que ha sido enviado. Acepta 'sumar' numeros negativos.
+ * Suma N cantidad de meses a una determinada fecha sin importar el formato que este tenga, devolviendo la fecha en algunos de los formatos validos que ha sido enviado. Acepta 'sumar' números negativos.
  */
-export function addNmeses(fecha: string, nMeses: number): string | CodigoFormatoFecha{
+export function addMeses(fecha: string, nMeses: number): string {
+    try {
 
-    if (validarFecha(fecha) !== CodigoFormatoFecha.FTM_CORRECTO) { return  CodigoFormatoFecha.ERR_FECHA_INVALIDA }
-
-    const dateConvert = setFormatoFecha(fecha, CodigoFormatoFecha.FMT_INVERSO);
-    const aFecha = new Date(dateConvert);
-
-    const newDate = new Date(aFecha.setMonth(aFecha.getMonth() + nMeses));
-    const newDateString = newDate.toISOString().slice(0,10).replace(/[-]/g, '/');
-
-    const {dia, mes, anio} = disgregarFecha(newDateString);    
-    const fmto = getFormatoFecha(fecha);
-    switch (fmto) 
-    {
-        case CodigoFormatoFecha.FMT_ESPANOL: 
-            return dia + '/' + mes  + '/' + anio;
-        case CodigoFormatoFecha.FMT_ITALIANO:
-            return dia + '-' + mes  + '-' + anio;
-        case CodigoFormatoFecha.FMT_PLANO:
-            return dia + mes + anio;
-        case CodigoFormatoFecha.FMT_INVERSOPLANO:
-            return anio + mes  + dia;
-        case CodigoFormatoFecha.FMT_INVERSO:
-            return anio + '/' + mes  + '/' + dia;
+        validarFecha(fecha)
+        
+        const dateConvert = setFormatoFecha(fecha, CodigoFormatoFecha.FMT_INVERSO);
+        const aFecha = new Date(dateConvert);
+    
+        const newDate = new Date(aFecha.setMonth(aFecha.getMonth() + nMeses));
+        const newDateString = newDate.toISOString().slice(0,10).replace(/[-]/g, '/');
+    
+        const {dia, mes, anio} = disgregarFecha(newDateString);    
+        const fmto = getFormatoFecha(fecha);
+        switch (fmto) 
+        {
+            case CodigoFormatoFecha.FMT_ESPANOL: 
+                return dia + '/' + mes  + '/' + anio;
+            case CodigoFormatoFecha.FMT_ITALIANO:
+                return dia + '-' + mes  + '-' + anio;
+            case CodigoFormatoFecha.FMT_PLANO:
+                return dia + mes + anio;
+            case CodigoFormatoFecha.FMT_INVERSOPLANO:
+                return anio + mes  + dia;
+            case CodigoFormatoFecha.FMT_INVERSO:
+                return anio + '/' + mes  + '/' + dia;
+        }
+    } catch (error) {
+        throw (error)
     }
     
 }

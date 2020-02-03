@@ -21,6 +21,20 @@ var CodigoFormatoFecha;
     CodigoFormatoFecha["ERR_DIA_INVALIDO"] = "DIAINVALIDO";
 })(CodigoFormatoFecha = exports.CodigoFormatoFecha || (exports.CodigoFormatoFecha = {}));
 ;
+exports.feriados = [
+    { dia: '01', mes: '01' },
+    { dia: '01', mes: '05' },
+    { dia: '21', mes: '05' },
+    { dia: '15', mes: '08' },
+    { dia: '18', mes: '09' },
+    { dia: '19', mes: '09' },
+    { dia: '01', mes: '11' },
+    { dia: '08', mes: '12' },
+    { dia: '25', mes: '12' },
+    { dia: '15', mes: '01' },
+    { dia: '10', mes: '04', anio: '2020' },
+    { dia: '11', mes: '04', anio: '2020' }
+];
 exports.feriadosFijos = [
     { dia: '01', mes: '01' },
     { dia: '01', mes: '05' },
@@ -31,7 +45,7 @@ exports.feriadosFijos = [
     { dia: '01', mes: '11' },
     { dia: '08', mes: '12' },
     { dia: '25', mes: '12' },
-    { dia: '15', mes: '01' }
+    { dia: '15', mes: '01' },
 ];
 exports.feriadosVariables = [
     { dia: '10', mes: '04', anio: '2020' },

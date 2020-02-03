@@ -1,5 +1,20 @@
-import { CodigoFormatoFecha } from '../src/constants';
-import { addNmeses,getDiaHabilSiguiente, getFormatoFecha, setFormatoFecha, isBisiesto, isHabil, validarFecha, restarFechas, disgregarFecha, getUltimoDiaMes, addDias, addDiasHabiles } from '../src';
+import { CodigoFormatoFecha, ErroresComunes, FormatoFeriados } from '../src/constants';
+import { addMeses,getDiaHabilSiguiente, getFormatoFecha, setFormatoFecha, isBisiesto, isHabil, validarFecha, restarFechas, disgregarFecha, getUltimoDiaMes, addDias, addDiasHabiles } from '../src';
+
+const feriados: FormatoFeriados[] = [
+    {dia : '01', mes : '01'},
+    {dia : '01', mes : '05'},
+    {dia : '21', mes : '05'},
+    {dia : '15', mes : '08'},
+    {dia : '18', mes : '09'},
+    {dia : '19', mes : '09'},
+    {dia : '01', mes : '11'},
+    {dia : '08', mes : '12'},
+    {dia : '25', mes : '12'},
+    {dia : '15', mes : '01'},
+    {dia : '10', mes : '04', anio : '2020'},
+    {dia : '11', mes : '04', anio : '2020'}
+];
 
 
 describe('determina el formato de las fechas', () => {
@@ -26,41 +41,40 @@ describe('determina el formato de las fechas', () => {
 
 
     it('valida formatos invalidos, ej: que dias y meses no tengan más de 2 caracteres y sean valores númericos, etc', () => {
-        expect(getFormatoFecha('158/12/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('15/122/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('15/12/20199')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('158/12/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('15/122/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('15/12/20199')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
 
-        expect(getFormatoFecha('=0/122/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('12/$8/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11/12/20.19')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11/1-2/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('=0/122/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('12/$8/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11/12/20.19')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11/1-2/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
         
-        expect(getFormatoFecha('11/1i2/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11/12/20o19')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('1i1/12/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11/1i2/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11/12/20o19')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('1i1/12/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
 
-
-        expect(getFormatoFecha('1/1/12/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11/12/20/19')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('1/1/12/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11/12/20/19')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
         
         expect(getFormatoFecha('11/10/2019')).toBe(CodigoFormatoFecha.FMT_ESPANOL);
 
-        expect(getFormatoFecha('158-12-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('15-122-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('15-12-20199')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('158-12-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('15-122-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('15-12-20199')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
 
-        expect(getFormatoFecha('=0-122-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('12-$8-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11-12-20.19')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11-1-2-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('=0-122-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('12-$8-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11-12-20.19')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11-1-2-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
         
-        expect(getFormatoFecha('11-1i2-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11-12-20o19')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('1i1-12-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11-1i2-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11-12-20o19')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('1i1-12-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
 
 
-        expect(getFormatoFecha('1/1-12-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha('11-12-20-19')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('1/1-12-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha('11-12-20-19')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
         
         expect(getFormatoFecha('11-10-2019')).toBe(CodigoFormatoFecha.FMT_ITALIANO);
 
@@ -68,10 +82,10 @@ describe('determina el formato de las fechas', () => {
 
 
     it('valida que fechas con apariencia de inverso y plano pero incorrectos sean erroneos', () => {
-        expect(getFormatoFecha( '150.12020')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha( '150120203')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha( '202400321')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getFormatoFecha( '2020-0321')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha( '150.12020')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha( '150120203')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha( '202400321')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getFormatoFecha( '2020-0321')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
     });
 
 });
@@ -177,23 +191,21 @@ describe('prueba convertir formato INVERSO a otros formatos', () => {
     });
 
     it('else path not taken', () => {
-        expect(setFormatoFecha( '15-01-2020',CodigoFormatoFecha.FTM_CORRECTO)).toBe('15-01-2020');
-        expect(setFormatoFecha( '15012020',CodigoFormatoFecha.FTM_CORRECTO)).toBe('15012020');
-        expect(setFormatoFecha( '2020/01/15',CodigoFormatoFecha.FTM_CORRECTO)).toBe('2020/01/15');
-        expect(setFormatoFecha( '20200115',CodigoFormatoFecha.FTM_CORRECTO)).toBe('20200115');
+        expect(setFormatoFecha( '15-01-2020',CodigoFormatoFecha.FMT_CORRECTO)).toBe('15-01-2020');
+        expect(setFormatoFecha( '15012020',CodigoFormatoFecha.FMT_CORRECTO)).toBe('15012020');
+        expect(setFormatoFecha( '2020/01/15',CodigoFormatoFecha.FMT_CORRECTO)).toBe('2020/01/15');
+        expect(setFormatoFecha( '20200115',CodigoFormatoFecha.FMT_CORRECTO)).toBe('20200115');
     });
-
-
 });
 
 
 describe('valida consistencia al formatear fecha', ()=> {
     
     it('valida formato de fecha invalido', () => {
-        expect(setFormatoFecha( '34012020',CodigoFormatoFecha.FMT_PLANO )).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(setFormatoFecha( '15.01.2020',CodigoFormatoFecha.FMT_PLANO )).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(setFormatoFecha( '1313020',CodigoFormatoFecha.FMT_PLANO )).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(setFormatoFecha( '15|01|2020',CodigoFormatoFecha.FMT_PLANO )).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA); 
+        expect(() => setFormatoFecha( '34012020',CodigoFormatoFecha.FMT_PLANO )).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => setFormatoFecha( '15.01.2020',CodigoFormatoFecha.FMT_PLANO )).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => setFormatoFecha( '1313020',CodigoFormatoFecha.FMT_PLANO )).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => setFormatoFecha( '15|01|2020',CodigoFormatoFecha.FMT_PLANO )).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA); 
     });
 
 });
@@ -222,45 +234,55 @@ describe('validacion años bisiestos', () => {
 describe('valida que fechas sean habiles', () => {
 
     it ('valida consistencia de fecha', () => {
-        // expect(isHabil('29-02-2021')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        // expect(isHabil('29/02/2021')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => isHabil('18.01.2020', feriados)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
 
-        expect(isHabil('18.01.2020')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(isHabil('13-01/2020')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => isHabil('13-01/2020', feriados)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
 
-        expect(isHabil('31/04/2021')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => isHabil('31/04/2021', feriados)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
 
-        expect(isHabil('20200431')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(isHabil('2020/04/31')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(isHabil('2021/02/29')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(isHabil('2020/02/29')).toBe(false);
-        
+        expect(() => isHabil('20200431', feriados)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+
+        expect(() => isHabil('2020/04/31', feriados)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+
+        expect(() => isHabil('2021/02/29', feriados)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+
+        expect(isHabil('2020/02/29', feriados)).toBe(false);
     });
 
-    
+    it('valida fecha correcta', () => {
+        // expect().tob        
+    });
+
+    it('valida excepciones cuando array vacio', () => {
+        expect(
+            () => isHabil('18/01/2020', []) 
+            ).toThrow(ErroresComunes.ERR_FERIADOS_VACIO);
+    });
+
+
     it ('valida el dato correcto cuando es fin de semana o no lo sea', () => {
-        expect(isHabil('18/01/2020')).toBe(false);
-        expect(isHabil('13/01/2020')).toBe(true);
+        expect(isHabil('18/01/2020', feriados)).toBe(false);
+        expect(isHabil('13/01/2020', feriados)).toBe(true);
     });
 
     it('valida dia festivo', () => {
-        expect(isHabil('01/01/2020')).toBe(false)
+        expect(isHabil('01/01/2020', feriados)).toBe(false)
     });
 
     it('valida que 15/01/2020 sea festivo', () => {
-        expect(isHabil('15/01/2020')).toBe(false)
+        expect(isHabil('15/01/2020', feriados)).toBe(false)
     });
 
     it('valida que 29/02/2020 sea no-habil', () => {
-        expect(isHabil('29/02/2020')).toBe(false)
+        expect(isHabil('29/02/2020', feriados)).toBe(false)
     });
 });
 
 describe('valida feriados variables', () => {
 
     it ('valida feriado semana santa 2020', () => {
-        expect(isHabil('10/04/2020')).toBe(false);
-        expect(isHabil('11/04/2020')).toBe(false);
+        expect(isHabil('10/04/2020', feriados)).toBe(false);
+        expect(isHabil('11/04/2020', feriados)).toBe(false);
     });
 
 });
@@ -270,73 +292,71 @@ describe('valida feriados variables', () => {
 describe('valida que fechas sean correctas', () => {
 
     it('valida que el el año ingresado sea el correcto: ni < a 1901 ni > a 2150', () => {
-        expect(validarFecha('01/01/1900')).toBe(CodigoFormatoFecha.ERR_ANIO_INVALIDO);
-        expect(validarFecha('01/01/2200')).toBe(CodigoFormatoFecha.ERR_ANIO_INVALIDO);
-        expect(validarFecha('01/01/1902')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
+        expect(() => validarFecha('01/01/1900')).toThrowError(ErroresComunes.ERR_ANIO_INVALIDO);
+        expect(() => validarFecha('01/01/2200')).toThrowError(ErroresComunes.ERR_ANIO_INVALIDO);
+        expect(validarFecha('01/01/1902')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
     });
 
     it('valida que el mes ingresado sea el correcto: ni < 1 ni > 12', () => {
-        expect(validarFecha('15/12/2018')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('15/00/2018')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
-        expect(validarFecha('15/13/2018')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
-        expect(validarFecha('15/1/2018')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(validarFecha('15/-1/2018')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
-        expect(validarFecha('15/120/2018')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-    });
-
-    it('valida que el mes ingresado sea el correcto: ni < 1 ni > 12', () => {
-        expect(validarFecha('15/120/2018')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-
-        console.log(getFormatoFecha('15/120/2018'));
+        expect(validarFecha('15/12/2018')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
         
+        expect(() => validarFecha('15/-1/2018')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
+        expect(() => validarFecha('15/13/2018')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
+        expect(() => validarFecha('15/00/2018')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
+        expect(() => validarFecha('15/1/2018')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => validarFecha('15/120/2018')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+    });
 
+    it('valida que el mes ingresado sea el correcto: ni < 1 ni > 12', () => {
+        expect(() => validarFecha('15/120/2018')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);        
     });
 
     it('valida que el dia ingresado sea el correcto: ni < 1 ni > 31', () => {
-        expect(validarFecha('-2/12/2018')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(validarFecha('152/02/2018')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(()=> validarFecha('-2/12/2018')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(()=> validarFecha('152/02/2018')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
     });
 
     it('valida año bisiesto formato español', () => {
-        expect(validarFecha('29/02/2015')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(()=>  validarFecha('29/02/2015')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
     });
 
     it('valida año bisiesto formato italiano', () => {
-        expect(isHabil('29-02-2021')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        // expect(() => isHabil('29-02-2021', feriados)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+
     });
     
 
     it('valida fecha 28/02/2015 sea correcto', () => {
-        expect(validarFecha('28/02/2015')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
+        expect(validarFecha('28/02/2015')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
     });
 
 
     it('valida fecha 29/02/2020 sea correcto (bisiesto)', () => {
-        expect(validarFecha('29/02/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
+        expect(validarFecha('29/02/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
     });
 
     it('valida fecha 29/02/2024 sea correcto (bisiesto)', () => {
-        expect(validarFecha('29/02/2024')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
+        expect(validarFecha('29/02/2024')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
     });
 
     it('valida dia de febrero mayor al maximo permitido: 29', () => {
-        expect(validarFecha('30/02/2020')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => validarFecha('30/02/2020')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
     });
 
 
     it('valida que dia de finde mes se corresponda con el mes', () => {
-        expect(validarFecha('30/02/2020')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(validarFecha('31/04/2021')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(validarFecha('31/06/2020')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => validarFecha('30/02/2020')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => validarFecha('31/04/2021')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => validarFecha('31/06/2020')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
         
-        expect(validarFecha('30/11/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('31/01/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('31/03/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('31/05/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('31/07/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('31/08/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('31/10/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
-        expect(validarFecha('31/12/2020')).toBe(CodigoFormatoFecha.FTM_CORRECTO);
+        expect(validarFecha('30/11/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+        expect(validarFecha('31/01/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+        expect(validarFecha('31/03/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+        expect(validarFecha('31/05/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+        expect(validarFecha('31/07/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+        expect(validarFecha('31/08/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+        expect(validarFecha('31/10/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+        expect(validarFecha('31/12/2020')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
 
         
     });
@@ -369,57 +389,56 @@ describe('prueba restando dos fechas', () => {
 
 
     it ('se valida que el formato de fechas sea el correcto: dia invalido fecha 1', () => {
-        expect(restarFechas('132/08/2019','11/08/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(restarFechas('34/08/2019','11/08/2019')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => restarFechas('32/08/2019','11/08/2019')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);        
     });
 
     
     it ('se valida que el formato de fechas sea el correcto: dia invalido fecha 1; fmto italiano', () => {
-        expect(restarFechas('132-08-2019','11-08-2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(restarFechas('33-08-2019','11-08-2019')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => restarFechas('132-08-2019','11-08-2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => restarFechas('33-08-2019','11-08-2019')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
     });
 
     it ('se valida que el formato de fechas sea el correcto: dia invalido fecha 1; fmto plano', () => {
       
-        expect(restarFechas('132082019','11082019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => restarFechas('132082019','11082019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
        
     });
     
     it ('se valida que el formato de fechas sea el correcto: dia invalido fecha 1; fmto inverso', () => {
-        expect(restarFechas('2019/08/132','2019/08/11')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(restarFechas('2019/08/34','2019/08/11')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => restarFechas('2019/08/132','2019/08/11')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => restarFechas('2019/08/34','2019/08/11')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
     });
 
     it ('se valida que el formato de fechas sea el correcto: dia invalido fecha 2', () => {
-        expect(restarFechas('13/08/2019','113/08/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(restarFechas('13/08/2019','32/08/2019')).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => restarFechas('13/08/2019','113/08/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => restarFechas('13/08/2019','32/08/2019')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
     });
 
 
     it ('se valida que el formato de fechas sea el correcto: mes invalido fecha 1', () => {
-        expect(restarFechas('13/13/2019','11/12/2019')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
-        expect(restarFechas('13/122/2019','11/12/2019')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => restarFechas('13/13/2019','11/12/2019')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
+        expect(() => restarFechas('13/122/2019','11/12/2019')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
     });
 
     it ('se valida que el formato de fechas sea el correcto: mes invalido fecha 1; fmto italiano', () => {
-        expect(restarFechas('13-13-2019','11-12-2019')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
+        expect(() => restarFechas('13-13-2019','11-12-2019')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
     });
 
     it ('se valida que el formato de fechas sea el correcto: mes invalido fecha 1; fmto inverso', () => {
-        expect(restarFechas('2019/13/13','2019/12/11')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
+        expect(() => restarFechas('2019/13/13','2019/12/11')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
     });
 
 
     it ('se valida que el formato de fechas sea el correcto: mes invalido fecha 2', () => {
-        expect(restarFechas('13/08/2019','11/13/2019')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
+        expect(() => restarFechas('13/08/2019','11/13/2019')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
     });
 
     it ('se valida que el formato de fechas sea el correcto: mes invalido fecha 2, fmto italiano', () => {
-        expect(restarFechas('13-08-2019','11-13-2019')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
+        expect(() => restarFechas('13-08-2019','11-13-2019')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
     });
 
     it ('se valida que el formato de fechas sea el correcto: mes invalido fecha 2, fmto inverso', () => {
-        expect(restarFechas('2019/08/13','2019/13/11')).toBe(CodigoFormatoFecha.ERR_MES_INVALIDO);
+        expect(() => restarFechas('2019/08/13','2019/13/11')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
     });
 
 
@@ -437,9 +456,9 @@ describe('prueba restando dos fechas', () => {
 
 
     it ('se valida que formato de fechas sea el mismo en ambos parametros', () => {
-        expect(restarFechas('20200120','2020/01/18')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(restarFechas('2020/01/18','16/01/2020')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(restarFechas('16/01/2020','16012020')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => restarFechas('20200120','2020/01/18')).toThrowError(ErroresComunes.ERR_FMTOS_DISPARES);
+        expect(() => restarFechas('2020/01/18','16/01/2020')).toThrowError(ErroresComunes.ERR_FMTOS_DISPARES);
+        expect(() => restarFechas('16/01/2020','16012020')).toThrowError(ErroresComunes.ERR_FMTOS_DISPARES);
     });
 
 })
@@ -478,15 +497,20 @@ describe('prueba disgregarFecha', ()=>{
         expect(anio).toBe('2020');
     });
 
+    it('fehca invalida', () => {
+        expect(() => disgregarFecha('14.09.2020')).toThrowError();
+    });
 
-    
+
 
 });
+
+
 
 describe('function getUltimoDiaMes', () => {
     
     it('prueba que fecha sea valida', () => {
-        expect(getUltimoDiaMes('12/01/202s1')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getUltimoDiaMes('12/01/202s1')).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
     });
 
     it('valido que dia de fin de mes sea el que corresponda', () => {
@@ -550,40 +574,40 @@ describe('function getUltimoDiaMes', () => {
 describe('prueba sumar meses', ()=> {
 
     it ('sumar dos meses dentro del mismo año', ()=> {
-        expect(addNmeses('16/07/2020', 2)).toBe('16/09/2020');
-        expect(addNmeses('16/09/2020', 2)).toBe('16/11/2020');
+        expect(addMeses('16/07/2020', 2)).toBe('16/09/2020');
+        expect(addMeses('16/09/2020', 2)).toBe('16/11/2020');
     });
 
     it ('sumar meses en el umbral de otro año', ()=> {
-        expect(addNmeses('16/10/2020', 3)).toBe('16/01/2021');
-        expect(addNmeses('16/10/2020', 12)).toBe('16/10/2021');
-        expect(addNmeses('16/10/2020', 15)).toBe('16/01/2022');
+        expect(addMeses('16/10/2020', 3)).toBe('16/01/2021');
+        expect(addMeses('16/10/2020', 12)).toBe('16/10/2021');
+        expect(addMeses('16/10/2020', 15)).toBe('16/01/2022');
     });
 
     it ('sumar meses con distintos formatos: italiano', ()=> {
-        expect(addNmeses('16-10-2020', 3)).toBe('16-01-2021');
+        expect(addMeses('16-10-2020', 3)).toBe('16-01-2021');
     });
     it ('sumar meses con distintos formatos: plano', ()=> {
-        expect(addNmeses('16102020', 12)).toBe('16102021');
+        expect(addMeses('16102020', 12)).toBe('16102021');
     });
     it ('sumar meses con distintos formatos: inverso', ()=> {
-        expect(addNmeses('2020/10/16', 15)).toBe('2022/01/16');
+        expect(addMeses('2020/10/16', 15)).toBe('2022/01/16');
     });
     it ('sumar meses con distintos formatos: inverso plano', ()=> {
-        expect(addNmeses('20201016', 15)).toBe('20220116');
+        expect(addMeses('20201016', 15)).toBe('20220116');
     });
 
     it ('sumar meses negativos', ()=> {
-        expect(addNmeses('16/09/2020', -1)).toBe('16/08/2020');
-        expect(addNmeses('16/01/2020', -1)).toBe('16/12/2019');
+        expect(addMeses('16/09/2020', -1)).toBe('16/08/2020');
+        expect(addMeses('16/01/2020', -1)).toBe('16/12/2019');
     });
 
     it ('formato invalido', ()=> {
-        expect(addNmeses('16.09.2020', 2)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(addNmeses('32/01/2020', 1)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(addNmeses('31/04/2020', 1)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(addNmeses('31/13/2020', 1)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(addNmeses('29/02/2021', 1)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => addMeses('32/01/2020', 1)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => addMeses('31/04/2020', 1)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => addMeses('29/02/2021', 1)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => addMeses('31/13/2020', 1)).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
+        expect(() => addMeses('16.09.2020', 2)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
     });
 });
 
@@ -591,10 +615,10 @@ describe('prueba sumar meses', ()=> {
 describe('preba obtener la Proxima Fecha', ()=> {
 
     it('formato invalido', ()=> {
-        expect(addDias('12.02.2029',3)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(addDias('32-02-2029',3)).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(addDias('31/04/2029',3)).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
-        expect(addDias('29/02/2021',3)).toBe(CodigoFormatoFecha.ERR_DIA_INVALIDO);
+        expect(() => addDias('12.02.2029',3)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => addDias('32-02-2029',3)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => addDias('31/04/2029',3)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => addDias('29/02/2021',3)).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
     });
 
     it ('prueba sumar n dias', ()=> {
@@ -637,57 +661,57 @@ describe('preba obtener la Proxima Fecha', ()=> {
 describe('addDiasHabiles', ()=> {
 
     it ('fechas no validas', () => {
-        expect(addDiasHabiles('213/01/2020', 1)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(addDiasHabiles('21.01.2020', 1)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(addDiasHabiles('21/01-2020', 1)).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => addDiasHabiles('213/01/2020', 1, feriados)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => addDiasHabiles('21.01.2020', 1, feriados)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => addDiasHabiles('21/01-2020', 1, feriados)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
     });
 
     it ('prueba siguiente dia habil', () => {
-        expect(addDiasHabiles('21/01/2020', 1)).toBe('22/01/2020');
+        expect(addDiasHabiles('21/01/2020', 1, feriados)).toBe('22/01/2020');
     });
     it ('prueba siguiente dia habil: caso de borde 1', () => {
-        expect(addDiasHabiles('24/01/2020', 1)).toBe('27/01/2020');
+        expect(addDiasHabiles('24/01/2020', 1, feriados)).toBe('27/01/2020');
     });
 
     it ('prueba siguiente dia habil: caso de borde 2', () => {
-        expect(addDiasHabiles('17/09/2020', 2)).toBe('22/09/2020');
+        expect(addDiasHabiles('17/09/2020', 2, feriados)).toBe('22/09/2020');
     });
 
     it ('prueba siguiente dia habil: caso de borde 3', () => {
-        expect(addDiasHabiles('15/09/2020', 3)).toBe('21/09/2020');
+        expect(addDiasHabiles('15/09/2020', 3, feriados)).toBe('21/09/2020');
     });
 
     it ('prueba siguiente dia habil: caso de borde 4', () => {
-        expect(addDiasHabiles('22/01/2020', 2)).toBe('24/01/2020');
+        expect(addDiasHabiles('22/01/2020', 2, feriados)).toBe('24/01/2020');
     });
 
     it ('prueba siguiente dia habil: caso de borde 4', () => {
-        expect(addDiasHabiles('22/01/2020', 2)).toBe('24/01/2020');
+        expect(addDiasHabiles('22/01/2020', 2, feriados)).toBe('24/01/2020');
     });
 
     it ('prueba siguiente dia habil: caso de borde 1, distintos formatos', () => {
-        expect(addDiasHabiles('24-01-2020', 1)).toBe('27-01-2020');
-        expect(addDiasHabiles('24012020', 1)).toBe('27012020');
-        expect(addDiasHabiles('20200124', 1)).toBe('20200127');
-        expect(addDiasHabiles('2020/01/24', 1)).toBe('2020/01/27');
+        expect(addDiasHabiles('24-01-2020', 1, feriados)).toBe('27-01-2020');
+        expect(addDiasHabiles('24012020', 1, feriados)).toBe('27012020');
+        expect(addDiasHabiles('20200124', 1, feriados)).toBe('20200127');
+        expect(addDiasHabiles('2020/01/24', 1, feriados)).toBe('2020/01/27');
     });
 
     it ('prueba siguiente dia habil: caso de borde 5', () => {
-        expect(addDiasHabiles('15/09/2020', 2)).toBe('17/09/2020');
+        expect(addDiasHabiles('15/09/2020', 2, feriados)).toBe('17/09/2020');
     });
 
 
     it ('prueba siguiente dia habil: caso de borde 6', () => {
-        expect(addDiasHabiles('20/05/2020', 1)).toBe('22/05/2020');
+        expect(addDiasHabiles('20/05/2020', 1, feriados)).toBe('22/05/2020');
     });
 
 
     it ('prueba siguiente dia habil: caso de borde 7', () => {
-        expect(addDiasHabiles('27/02/2020', 2)).toBe('02/03/2020');
+        expect(addDiasHabiles('27/02/2020', 2, feriados)).toBe('02/03/2020');
     });
 
     it ('prueba siguiente dia habil: caso de borde 8', () => {
-        expect(addDiasHabiles('27/02/2025', 2)).toBe('03/03/2025');
+        expect(addDiasHabiles('27/02/2025', 2, feriados)).toBe('03/03/2025');
     });
 
 });
@@ -696,31 +720,71 @@ describe('addDiasHabiles', ()=> {
 describe('getDiaHabilSiguiente', () => {
 
     it('valida fecha', () => {
-        expect(getDiaHabilSiguiente('21-01/2020')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
-        expect(getDiaHabilSiguiente('21.01.2020')).toBe(CodigoFormatoFecha.ERR_FECHA_INVALIDA);
+        expect(() => getDiaHabilSiguiente('21-01/2020', feriados)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
+        expect(() => getDiaHabilSiguiente('21.01.2020', feriados)).toThrowError(ErroresComunes.ERR_FECHA_INVALIDA);
 
     });
 
     it('camino feliz', () => {
-        expect(getDiaHabilSiguiente('21/01/2020')).toBe('22/01/2020');
+        expect(getDiaHabilSiguiente('21/01/2020', feriados)).toBe('22/01/2020');
     });
 
     it('feriados', () => {
-        expect(getDiaHabilSiguiente('17/09/2020')).toBe('21/09/2020');
-        expect(getDiaHabilSiguiente('17-09-2020')).toBe('21-09-2020');
-        expect(getDiaHabilSiguiente('2020/09/17')).toBe('2020/09/21');
+        expect(getDiaHabilSiguiente('17/09/2020', feriados)).toBe('21/09/2020');
+        expect(getDiaHabilSiguiente('17-09-2020', feriados)).toBe('21-09-2020');
+        expect(getDiaHabilSiguiente('2020/09/17', feriados)).toBe('2020/09/21');
     });
 
     it('bisiestos', () => {
-        expect(getDiaHabilSiguiente('28/02/2012')).toBe('29/02/2012');
-        expect(getDiaHabilSiguiente('28-02-2012')).toBe('29-02-2012');
-        expect(getDiaHabilSiguiente('28022012')).toBe('29022012');
-        expect(getDiaHabilSiguiente('2012/02/28')).toBe('2012/02/29');
+        expect(getDiaHabilSiguiente('28/02/2012', feriados)).toBe('29/02/2012');
+        expect(getDiaHabilSiguiente('28-02-2012', feriados)).toBe('29-02-2012');
+        expect(getDiaHabilSiguiente('28022012', feriados)).toBe('29022012');
+        expect(getDiaHabilSiguiente('2012/02/28', feriados)).toBe('2012/02/29');
 
-        expect(getDiaHabilSiguiente('20120228')).toBe('20120229');
+        expect(getDiaHabilSiguiente('20120228', feriados)).toBe('20120229');
 
-        expect(getDiaHabilSiguiente('28/02/2011')).toBe('01/03/2011');
+        expect(getDiaHabilSiguiente('28/02/2011', feriados)).toBe('01/03/2011');
     });
 
 });
 
+
+
+describe('Name of the group', () => {
+    it('should ', () => {
+        
+        expect(() => validarFecha('36/05/2021')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+        expect(() => validarFecha('29/02/2021')).toThrowError(ErroresComunes.ERR_DIA_INVALIDO);
+
+        expect(() => validarFecha('29/13/2021')).toThrowError(ErroresComunes.ERR_MES_INVALIDO);
+        expect(() => validarFecha('16/06/9021')).toThrowError(ErroresComunes.ERR_ANIO_INVALIDO);
+        
+        expect(validarFecha('30/08/2021')).toBe(CodigoFormatoFecha.FMT_CORRECTO);
+
+        expect(addDias('01/02/2020', 1)).toBe('02/02/2020'); //  '02/02/2020'
+
+        expect(addDias('01/02/2020', 30)).toBe('02/03/2020'); //  '02/02/2020'
+
+
+        const feriados2 = [
+            {dia : '01', mes : '01'},
+            {dia : '25', mes : '12'},
+            {dia : '25', mes : '12', anio : '2019'},
+            {dia : '10', mes : '04', anio : '2020'}
+        ]
+        
+        expect(addDiasHabiles('24/12/2019', 5, feriados2)).toBe('02/01/2020');   // '02/01/2020'
+
+        
+        expect(
+            addMeses('01/01/2020', 6)
+        ).toBe('01/07/2020')
+
+
+                
+        expect(
+            addMeses('01/10/2020', 3)
+        ).toBe('01/01/2021')
+
+    });
+});

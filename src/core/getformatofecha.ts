@@ -1,10 +1,10 @@
-import { CodigoFormatoFecha } from "../constants";
+import { CodigoFormatoFecha, ErroresComunes } from "../constants";
 import { isNumero } from "./numeros";
 
 /**
  * 
  * @param fecha 
- * Obtiene el tipo de formato de una fecha dada
+ * Obtiene el formato de una fecha dada según los formatos definidos
  */
 export function getFormatoFecha( fecha: string ): CodigoFormatoFecha {
     
@@ -36,6 +36,6 @@ export function getFormatoFecha( fecha: string ): CodigoFormatoFecha {
         return CodigoFormatoFecha.FMT_INVERSOPLANO; 
     }
 
-    return CodigoFormatoFecha.ERR_FECHA_INVALIDA;
+    throw new Error(ErroresComunes.ERR_FECHA_INVALIDA)
 
 }

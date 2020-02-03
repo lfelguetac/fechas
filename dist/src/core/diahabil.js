@@ -8,7 +8,7 @@ const validarfecha_1 = require("./validarfecha");
  * @param fecha
  * Valida que una fecha sea habil o no. Considera fines de semana, feriados fijos y variables.
  */
-function isHabil(fecha) {
+function isHabil(fecha, feriados) {
     const codigoFormato = validarfecha_1.validarFecha(fecha);
     if (codigoFormato !== constants_1.CodigoFormatoFecha.FTM_CORRECTO) {
         return codigoFormato;
@@ -21,12 +21,12 @@ function isHabil(fecha) {
         habil = false;
     }
     const { dia, mes, anio } = disgregarfecha_1.disgregarFecha(dateFormatted);
-    constants_1.feriadosFijos.map(fecha => {
+    feriados.filter(item => !item.hasOwnProperty("anio")).map(fecha => {
         if (fecha.dia === dia && fecha.mes === mes) {
             habil = false;
         }
     });
-    constants_1.feriadosVariables.map(fecha => {
+    feriados.filter(item => item.hasOwnProperty("anio")).map(fecha => {
         if (fecha.dia === dia && fecha.mes === mes && fecha.anio === anio) {
             habil = false;
         }

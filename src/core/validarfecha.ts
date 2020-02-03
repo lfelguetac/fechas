@@ -1,4 +1,4 @@
-import { CodigoFormatoFecha, diasDelMes } from "../constants";
+import { CodigoFormatoFecha, diasDelMes, ErroresComunes } from "../constants";
 import { getFormatoFecha } from "./getformatofecha";
 import { disgregarFecha } from "./disgregarfecha";
 import { isBisiesto } from "./bisiesto";
@@ -9,45 +9,38 @@ import { isBisiesto } from "./bisiesto";
  * Valida la consistencia de una fecha dada
  */
 export function validarFecha (fecha: string): CodigoFormatoFecha {
+    try {
 
-    let codigoFormatoFecha: CodigoFormatoFecha = CodigoFormatoFecha.FTM_CORRECTO;
-
-    // if (fecha.length > 10) { 
-    //     return CodigoFormatoFecha.ERR_FECHA_INVALIDA;
-    // }
+        getFormatoFecha(fecha);
+        const {dia, mes, anio} = disgregarFecha(fecha);
     
-    const formato: CodigoFormatoFecha = getFormatoFecha(fecha);
-    if (formato === CodigoFormatoFecha.ERR_FECHA_INVALIDA) { return CodigoFormatoFecha.ERR_FECHA_INVALIDA };
-
-    const {dia, mes, anio} = disgregarFecha(fecha);
-
-    if (anio < 1901 || anio > 2150) {
-        codigoFormatoFecha = CodigoFormatoFecha.ERR_ANIO_INVALIDO;
-    }
-
-    if (mes < 1 || mes  > 12) {
-        codigoFormatoFecha = CodigoFormatoFecha.ERR_MES_INVALIDO;
-    }
-
-    if (dia < 1 || dia  > 31) {
-        codigoFormatoFecha = CodigoFormatoFecha.ERR_DIA_INVALIDO;
-    }
-
-    if (mes === '02') {
-        if (!isBisiesto(anio) && dia > 28) { codigoFormatoFecha = CodigoFormatoFecha.ERR_DIA_INVALIDO }
-        if (dia < 1 || dia > 29) { codigoFormatoFecha = CodigoFormatoFecha.ERR_DIA_INVALIDO }
-    }
-
-    if (dia < 1 || dia > 31) { 
-        codigoFormatoFecha = CodigoFormatoFecha.ERR_DIA_INVALIDO;
-    }
-
-    diasDelMes.map(fecha => {
-        if (mes !== '02' && mes === fecha.mes  && dia > fecha.dia) { 
-            codigoFormatoFecha = CodigoFormatoFecha.ERR_DIA_INVALIDO;
+        if (anio < 1901 || anio > 2150) {
+            throw new Error(ErroresComunes.ERR_ANIO_INVALIDO);   
         }
-    });
-    
-    return codigoFormatoFecha;
+
+        if (mes < 1 || mes  > 12) {
+            throw new Error(ErroresComunes.ERR_MES_INVALIDO);
+        }
+
+        if (dia < 1 || dia > 31) {
+            throw new Error(ErroresComunes.ERR_DIA_INVALIDO);
+        }
+
+        if (mes === '02') {
+            if (!isBisiesto(anio) && dia > 28) { throw new Error(ErroresComunes.ERR_DIA_INVALIDO); }
+            if (dia < 1 || dia > 29) { throw new Error(ErroresComunes.ERR_DIA_INVALIDO); }
+        }
+
+        diasDelMes.map(fecha => {
+            if (mes !== '02' && mes === fecha.mes  && dia > fecha.dia) { 
+                throw new Error(ErroresComunes.ERR_DIA_INVALIDO);
+            }
+        });
+
+        return CodigoFormatoFecha.FMT_CORRECTO;
+
+    } catch (error) {
+        throw (error);
+    }
 
 }
