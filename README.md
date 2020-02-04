@@ -8,9 +8,8 @@ Escrita en typescript (y en spanglish)
 [![Coverage Status](https://coveralls.io/repos/github/PQMISSCMP/fechas/badge.svg?branch=master)](https://coveralls.io/github/PQMISSCMP/fechas)
 
 ****
-Test unitarios, covertura 100%:
 
-![informe](snapshot.jest.png?raw=true "")
+
 
 Para instalar:
 ```sh
