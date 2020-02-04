@@ -1,4 +1,4 @@
-### Una simple (muy simple) librería para el manejo de fechas
+## Una simple (muy simple) librería para el manejo de fechas
 
 Test unitarios, covertura 100%:
 
@@ -9,9 +9,9 @@ Para instalar:
 npm i fechas
 ```
 
-### Uso
+## Uso
 
-##### getFormatoFecha
+#### getFormatoFecha
 ```js
 getFormatoFecha (fecha: string): CodigoFormatoFecha;
 ```
@@ -52,7 +52,7 @@ getFormatoFecha('2020.03.21'); // Error: Formato de fecha invalida
 
 
 
-##### validarFecha
+#### validarFecha
 ```js
 validarFecha (fecha: string): CodigoFormatoFecha;
 ```
@@ -72,7 +72,7 @@ validarFecha('30/08/2021'); // Correcto
 ```
 
 
-##### setFormatoFecha
+#### setFormatoFecha
 ```js
 setFormatoFecha( fecha: string, tipoFormato: CodigoFormatoFecha ) : string;
 ```
@@ -88,7 +88,7 @@ setFormatoFecha('02/02/2020', CodigoFormatoFecha.FMT_INVERSO); // '2020/02/02'
 ```
 
 
-##### getUltimoDiaMes
+#### getUltimoDiaMes
 ```js
 getUltimoDiaMes( fecha: string ): string;
 ```
@@ -104,7 +104,7 @@ getUltimoDiaMes('16/03/2020');  // 31/03/2020
 
 ```
 
-##### isBisiesto
+#### isBisiesto
 ```js
 isBisiesto(anio:number): boolean;
 ```
@@ -119,7 +119,7 @@ isBisiesto(2021);  //false
 
 ```
 
-##### getDiaHabilSiguiente
+#### getDiaHabilSiguiente
 ```js
 getDiaHabilSiguiente(fecha: string, listaFeriados: FormatoFeriados[]); string
 ```
@@ -150,7 +150,7 @@ El uso de la interfaz es opcional pero si esta empleando typescript se recomiend
 
 
 
-##### addDias
+#### addDias
 ```js
 addDias (fecha: string, nDias: number): string;
 ```
@@ -166,7 +166,7 @@ addDias('01/02/2020', 30);  // '02/03/2020'
 ```
 
 
-##### addDiasHabiles
+#### addDiasHabiles
 ```js
 addDiasHabiles( fecha: string, cantidadDiazHabiles: number, listaFeriados: FormatoFeriados[] ): string;
 ```
@@ -194,7 +194,7 @@ addDiasHabiles('24/12/2019', 5, feriados);   // '02/01/2020'
 
 ```
 
-##### addMeses
+#### addMeses
 ```js
 addMeses(fecha: string, nMeses: number): string;
 ```
@@ -213,7 +213,7 @@ addMeses('01/10/2020', 3); // '01/01/2021'
 ```
 
 
-##### restarFechas
+#### restarFechas
 ```js
 restarFechas ( fecha1: string, fecha2: string ): number;
 ```
@@ -231,7 +231,7 @@ restarFechas('14/09/2019','10/09/2019'); // 4
 
 ```
 
-##### isHabil
+#### isHabil
 ```js
 isHabil ( fecha: string, listaFeriados: FormatoFeriados[] ): boolean;
 ```

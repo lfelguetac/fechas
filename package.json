@@ -22,10 +22,11 @@
   },
   "keywords": [
     "libreria",
-    "fechas"
+    "fechas",
+    "dates"
   ],
-  "author": "",
-  "license": "UNLICENSED",
+  "author": "Luis F. Elgueta",
+  "license": "ISC",
   "dependencies": {
     "@types/node": "^13.1.7",
     "reflect-metadata": "^0.1.13",
