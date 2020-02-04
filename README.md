@@ -3,9 +3,9 @@
 
 Escrita en typescript (y en spanglish)
 
-[![npm version](https://badge.fury.io/js/fechas.svg)] (https://badge.fury.io/js/fechas)
-[![Build Status](https://travis-ci.org/PQMISSCMP/fechas.svg?branch=master)]https://travis-ci.com/PQMISSCMP/fechas
-[![Coverage Status](https://coveralls.io/repos/github/PQMISSCMP/fechas/badge.svg?branch=master)] https://coveralls.io/github/PQMISSCMP/fechas
+[![npm version](https://badge.fury.io/js/fechas.svg)](https://badge.fury.io/js/fechas)
+[![Build Status](https://travis-ci.org/PQMISSCMP/fechas.svg?branch=master)](https://travis-ci.com/PQMISSCMP/fechas)
+[![Coverage Status](https://coveralls.io/repos/github/PQMISSCMP/fechas/badge.svg?branch=master)] (https://coveralls.io/github/PQMISSCMP/fechas)
 
 ****
 Test unitarios, covertura 100%:
