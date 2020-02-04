@@ -1,4 +1,4 @@
-###Una simple (muy simple) librería para el manejo de fechas
+### Una simple (muy simple) librería para el manejo de fechas
 
 Test unitarios, covertura 100%:
 
@@ -9,7 +9,7 @@ Para instalar:
 npm i fechas
 ```
 
-###Uso
+### Uso
 
 ##### getFormatoFecha
 ```js
@@ -125,6 +125,8 @@ getDiaHabilSiguiente(fecha: string, listaFeriados: FormatoFeriados[]); string
 ```
 Obtiene la próxima fecha hábil dados una fecha y el listado de feriados de su país
 
+Ejemplo: 
+
 ```js
 import { getDiaHabilSiguiente } from "fechas";
 
@@ -149,10 +151,10 @@ El uso de la interfaz es opcional pero si esta empleando typescript se recomiend
 
 
 ##### addDias
-Obtiene una nueva fecha al sumar o restar días
 ```js
 addDias (fecha: string, nDias: number): string;
 ```
+Obtiene una nueva fecha al sumar o restar días.
 
 Ejemplo:
 ```js
@@ -168,7 +170,6 @@ addDias('01/02/2020', 30);  // '02/03/2020'
 ```js
 addDiasHabiles( fecha: string, cantidadDiazHabiles: number, listaFeriados: FormatoFeriados[] ): string;
 ```
-
 Dados una fecha válida y un listado de feriados obtiene una nueva fecha hábil, al sumar o restar días hábiles.
 
 Ejemplo:
