@@ -10,9 +10,6 @@
     "prepublicar": "npm run build",
     "publicar": "npm publish"
   },
-  "publishConfig": {
-    "registry": "https://github.com/PQMISSCMP/fechas"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/PQMISSCMP/fechas"
@@ -27,6 +24,9 @@
   ],
   "author": "Luis F. Elgueta",
   "license": "ISC",
+  "engines": { 
+    "node": "13.0.1"
+  },
   "dependencies": {
     "@types/node": "^13.1.7",
     "reflect-metadata": "^0.1.13",
