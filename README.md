@@ -18,7 +18,7 @@ npm i fechas
 
 ## Uso
 
-- #### getFormatoFecha
+#### getFormatoFecha
 ```js
 getFormatoFecha (fecha: string): CodigoFormatoFecha;
 ```
@@ -45,7 +45,7 @@ FMT_INVERSO = 'INVERSO',
 FMT_INVERSOPLANO = 'INVERSOPLANO'
 ```
 
-Ejemplo:
+Ej:
 ```js
 import { getFormatoFecha } from "fechas";
 
@@ -59,13 +59,13 @@ getFormatoFecha('2020.03.21'); // Error: Formato de fecha invalida
 
 
 
-- #### validarFecha
+#### validarFecha
 ```js
 validarFecha (fecha: string): CodigoFormatoFecha;
 ```
 Valida la consistencia de una fecha dada
 
-Ejemplo:
+Ej:
 
 ```js
 import { validarFecha } from "fechas";
@@ -79,14 +79,14 @@ validarFecha('30/08/2021'); // Correcto
 ```
 
 
-- #### setFormatoFecha
+#### setFormatoFecha
 ```js
 setFormatoFecha( fecha: string, tipoFormato: CodigoFormatoFecha ) : string;
 ```
 
 Asigna alguno de los formatos validos a una fecha dada. 
 
-Ejemplo:
+Ej:
 
 ```js
 import { setFormatoFecha } from "fechas";
@@ -95,12 +95,13 @@ setFormatoFecha('02/02/2020', CodigoFormatoFecha.FMT_INVERSO); // '2020/02/02'
 ```
 
 
-- #### getUltimoDiaMes
+#### getUltimoDiaMes
 ```js
 getUltimoDiaMes( fecha: string ): string;
 ```
 Devuelve el final de mes para cada mes dado en alguno de los formatos validos. Considera años bisiestos.
 
+Ej:
 
 ```js
 import { getUltimoDiaMes } from "fechas";
@@ -111,11 +112,13 @@ getUltimoDiaMes('16/03/2020');  // 31/03/2020
 
 ```
 
-- #### isBisiesto
+#### isBisiesto
 ```js
 isBisiesto(anio:number): boolean;
 ```
 Indica si el año dado es bisiesto o no.
+
+Ej:
 
 ```js
 import { isBisiesto } from "fechas";
@@ -126,13 +129,13 @@ isBisiesto(2021);  //false
 
 ```
 
-- #### getDiaHabilSiguiente
+#### getDiaHabilSiguiente
 ```js
 getDiaHabilSiguiente(fecha: string, listaFeriados: FormatoFeriados[]); string
 ```
 Obtiene la próxima fecha hábil dados una fecha y el listado de feriados de su país
 
-Ejemplo: 
+Ej: 
 
 ```js
 import { getDiaHabilSiguiente } from "fechas";
@@ -157,13 +160,13 @@ El uso de la interfaz es opcional pero si esta empleando typescript se recomiend
 
 
 
-- #### addDias
+#### addDias
 ```js
 addDias (fecha: string, nDias: number): string;
 ```
 Obtiene una nueva fecha al sumar o restar días.
 
-Ejemplo:
+Ej:
 ```js
 import { addDias } from "fechas";
 
@@ -173,13 +176,13 @@ addDias('01/02/2020', 30);  // '02/03/2020'
 ```
 
 
-- #### addDiasHabiles
+#### addDiasHabiles
 ```js
 addDiasHabiles( fecha: string, cantidadDiazHabiles: number, listaFeriados: FormatoFeriados[] ): string;
 ```
 Dados una fecha válida y un listado de feriados obtiene una nueva fecha hábil, al sumar o restar días hábiles.
 
-Ejemplo:
+Ej:
 
 ```js
 import { addDiasHabiles } from "fechas";
@@ -201,14 +204,14 @@ addDiasHabiles('24/12/2019', 5, feriados);   // '02/01/2020'
 
 ```
 
-- #### addMeses
+#### addMeses
 ```js
 addMeses(fecha: string, nMeses: number): string;
 ```
 
 Suma N meses a una fecha sin importar el formato que este tenga, devolviendo una nueva fecha con el resultado de la suma y en el formato que ha sido enviada.
 
-Ejemplo:
+Ej:
 
 ```js
 import { addMeses } from "fechas";
@@ -220,14 +223,14 @@ addMeses('01/10/2020', 3); // '01/01/2021'
 ```
 
 
-- #### restarFechas
+#### restarFechas
 ```js
 restarFechas ( fecha1: string, fecha2: string ): number;
 ```
 Obtiene la diferencia en días de dos fechas validas con el mismo formato
 
 
-Ejemplo:
+Ej:
 
 ```js
 import { restarFechas } from "fechas";
@@ -238,14 +241,14 @@ restarFechas('14/09/2019','10/09/2019'); // 4
 
 ```
 
-- #### isHabil
+#### isHabil
 ```js
 isHabil ( fecha: string, listaFeriados: FormatoFeriados[] ): boolean;
 ```
 Valida que una fecha sea hábil o no dados la fecha y el listado de feriados (de un país) . Valida feriados considerando dd-mm  /  dd-mm-yyyy y fines de semana.
 
 
-Ejemplo:
+Ej:
 
 ```js
 export interface FormatoFeriados {
